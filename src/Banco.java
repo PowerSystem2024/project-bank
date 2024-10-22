@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 
-
 public class Banco extends javax.swing.JFrame {
 
     public Banco() {
