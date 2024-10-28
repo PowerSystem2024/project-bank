@@ -317,7 +317,13 @@ public class Banco extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarClienteActionPerformesd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        // TODO add your handling code here:
+        Cliente c= new Cliente();
+        c.setNombre(txtNombreCliente.getText());
+        c.setTelefono(txtTelefono.getText());
+        c.setDireccion(txtDireccion.getText());
+        listaClientes.add(c);
+        borrarFormCliente();
+        llenarCombosCliente();
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
 
@@ -332,6 +338,13 @@ public class Banco extends javax.swing.JFrame {
        cboConsultarTipoCuenta.setModel(new DefaultComboBoxModel (tipoCuentas)); // Los combos se rellenan
     }
 
+    public void borrarFormCliente(){
+        txtNombreCliente.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+    }
+
+    
     private void txtDirecciónClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecciónClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDirecciónClienteActionPerformed
