@@ -1,6 +1,8 @@
 
 import java.awt.Image;
 import java.awt.Toolkit;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 
@@ -314,9 +316,21 @@ public class Banco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+    private void btnAgregarClienteActionPerformesd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
+
+
+    public void llenarCombosTipoCuenta(){
+       Object tipoCuentas[]= new object[listaTipoCuentas.size]; //creamos arreglo con tamaño de el array
+        int i=0;
+       for(TipoCuenta tc : listaTipoCuentas){ // recorre el arraylist
+           tipoCuentas[i] = tc.getNombre(); // obtiene el nombre y lo guarda en el arreglo y se lo pasa a los combos
+            i++;
+        }
+       cbpTipoCuenta.setModel(new DefaultComboBoxModel (tipoCuentas)); // Los combos se rellenan
+       cboConsultarTipoCuenta.setModel(new DefaultComboBoxModel (tipoCuentas)); // Los combos se rellenan
+    }
 
     private void txtDirecciónClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecciónClienteActionPerformed
         // TODO add your handling code here:
