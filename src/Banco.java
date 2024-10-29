@@ -1,9 +1,8 @@
 
 import java.awt.Image;
 import java.awt.Toolkit;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+
 
 
 public class Banco extends javax.swing.JFrame {
@@ -62,6 +61,8 @@ public class Banco extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMovimientos = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(143, 161, 173));
@@ -298,7 +299,7 @@ public class Banco extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblMovimientos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 520, 330));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 520, 230));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -313,38 +314,19 @@ public class Banco extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
+        jLabel2.setText("SALDO");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 680, 200, 70));
+
+        jLabel14.setText("MONTO");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 690, 250, 60));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarClienteActionPerformesd(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        Cliente c= new Cliente();
-        c.setNombre(txtNombreCliente.getText());
-        c.setTelefono(txtTelefono.getText());
-        c.setDireccion(txtDireccion.getText());
-        listaClientes.add(c);
-        borrarFormCliente();
-        llenarCombosCliente();
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
-
-    public void llenarCombosTipoCuenta(){
-       Object tipoCuentas[]= new object[listaTipoCuentas.size]; //creamos arreglo con tamaño de el array
-        int i=0;
-       for(TipoCuenta tc : listaTipoCuentas){ // recorre el arraylist
-           tipoCuentas[i] = tc.getNombre(); // obtiene el nombre y lo guarda en el arreglo y se lo pasa a los combos
-            i++;
-        }
-       cbpTipoCuenta.setModel(new DefaultComboBoxModel (tipoCuentas)); // Los combos se rellenan
-       cboConsultarTipoCuenta.setModel(new DefaultComboBoxModel (tipoCuentas)); // Los combos se rellenan
-    }
-
-    public void borrarFormCliente(){
-        txtNombreCliente.setText("");
-        txtTelefono.setText("");
-        txtDireccion.setText("");
-    }
-
-    
     private void txtDirecciónClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecciónClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDirecciónClienteActionPerformed
@@ -405,9 +387,11 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
