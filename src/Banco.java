@@ -1,11 +1,14 @@
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 
 
 public class Banco extends javax.swing.JFrame {
+    ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 
     public Banco() {
         initComponents();
@@ -324,9 +327,34 @@ public class Banco extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        // TODO add your handling code here:
+        Cliente c = new Cliente();
+        c.setNombre(txtNombreCliente.getText());
+        c.setTelefono(txtTeléfonoCliente.getText());
+        c.setDireccion(txtDirecciónCliente.getText());
+        listaClientes.add(c);
+        borrarFormCliente();
+        llenarCombosCliente();
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
+    public void llenarCombosCliente(){
+        Object clientes[]= new Object[listaClientes.size()]; //creo array list
+        int i= 0;
+        for ( Cliente c : listaClientes){ //recorre arrayList
+            clientes[i] = c.getNombre(); //obtiene el nombre de cada cliente y lo guarda en el arreglo y se lo pasa a los combos asi se rellena
+            i++;
+        }
+        cboCuentaCliente.setModel(new DefaultComboBoxModel(clientes)); // aqui se los paso a los combos y ellos se rellenan
+        cboConsultaCliente.setModel(new DefaultComboBoxModel(clientes));
+    }
+    
+    public void borrarFormCliente(){
+        txtNombreCliente.setText("");
+        txtTeléfonoCliente.setText("");
+        txtDirecciónCliente.setText("");
+    }
+    
+    
+    
     private void txtDirecciónClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecciónClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDirecciónClienteActionPerformed
