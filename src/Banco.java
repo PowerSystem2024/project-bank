@@ -1,25 +1,30 @@
-
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
 
 
 public class Banco extends javax.swing.JFrame {
     ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+    ArrayList<String> listaTipoCuenta = new ArrayList<String>();
+
+    Cliente cliente;
 
     public Banco() {
         initComponents();
         this.setTitle("BANCO");
-        Image img=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo.png"));
-        lblLogo.setIcon(new ImageIcon(img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH)));
-        
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo.png"));
+        lblLogo.setIcon(
+                new ImageIcon(img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH)));
+
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
@@ -290,16 +295,15 @@ public class Banco extends javax.swing.JFrame {
 
         tblMovimientos.setBackground(new java.awt.Color(198, 206, 211));
         tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane1.setViewportView(tblMovimientos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 520, 230));
@@ -307,13 +311,11 @@ public class Banco extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE));
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
@@ -324,9 +326,9 @@ public class Banco extends javax.swing.JFrame {
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 690, 250, 60));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>
 
-    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {
         Cliente c = new Cliente();
         c.setNombre(txtNombreCliente.getText());
         c.setTelefono(txtTeléfonoCliente.getText());
@@ -334,65 +336,108 @@ public class Banco extends javax.swing.JFrame {
         listaClientes.add(c);
         borrarFormCliente();
         llenarCombosCliente();
-    }//GEN-LAST:event_btnAgregarClienteActionPerformed
+    }
 
-    public void llenarCombosCliente(){
-        Object clientes[]= new Object[listaClientes.size()]; //creo array list
-        int i= 0;
-        for ( Cliente c : listaClientes){ //recorre arrayList
-            clientes[i] = c.getNombre(); //obtiene el nombre de cada cliente y lo guarda en el arreglo y se lo pasa a los combos asi se rellena
+    public void llenarCombosCliente() {
+        Object clientes[] = new Object[listaClientes.size()]; // creo array list
+        int i = 0;
+        for (Cliente c : listaClientes) { // recorre arrayList
+            clientes[i] = c.getNombre(); // obtiene el nombre de cada cliente y lo guarda en el arreglo y se lo pasa a
+                                         // los combos asi se rellena
             i++;
         }
-        cboCuentaCliente.setModel(new DefaultComboBoxModel(clientes)); // aqui se los paso a los combos y ellos se rellenan
+        cboCuentaCliente.setModel(new DefaultComboBoxModel(clientes)); // aqui se los paso a los combos y ellos se
+                                                                       // rellenan
         cboConsultaCliente.setModel(new DefaultComboBoxModel(clientes));
     }
-    
-    public void borrarFormCliente(){
+
+    public void borrarFormCuenta() {
+        cboCuentaCliente.setSelectedIndex(0);
+        cbpTipoCuenta.setSelectedIndex(0);
+        txtMontoInicial.setText("");
+
+    }
+
+    public void borrarFormCliente() {
         txtNombreCliente.setText("");
         txtTeléfonoCliente.setText("");
         txtDirecciónCliente.setText("");
     }
+
+    private void txtDirecciónClienteActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void txtTeléfonoClienteActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void bcnAgregarTipoCuentaActionPerformed(java.awt.event.ActionEvent evt) {
+        String tipoCuenta = JOptionPane.showInputDialog(this, "TIPO CUENTA");
+        listaTipoCuenta.add(tipoCuenta);
+        llenarCombosTipoCuenta();
+
+    }
+
+    public void llenarCombosTipoCuenta() {
+        Object tipos[] = new Object[listaTipoCuenta.size()];
+        int i = 0;
+        for (String tipo : listaTipoCuenta) {
+            tipos[i] = tipo;
+            i++;
+        }
+        cbpTipoCuenta.setModel(new DefaultComboBoxModel(tipos));
+        cboConsultaTipoCuenta.setModel(new DefaultComboBoxModel(tipos));
+
+    }
+
+    private void txtMontoInicialActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        cliente = listaClientes.get(cboCuentaCliente.getSelectedIndex());
+        Cuenta cuenta = new Cuenta();
+        cuenta.setTipoCuenta(listaTipoCuenta.get(cbpTipoCuenta.getSelectedIndex()));
+        cuenta.setMontoinicial(Double.parseDouble(txtMontoInicial.getText()));
+        cliente.addCuenta(cuenta);
+
+
+        Movimiento m = new Movimiento();
+       
+      m.setFechaMovimiento(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        m.setTipoMovimiento("APERTURA");
+        m.setMonto(Double.parseDouble(txtMontoInicial.getText()));
+        cuenta.addMovimiento(m);
+        borrarFormCuenta();
     
-    
-    
-    private void txtDirecciónClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirecciónClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDirecciónClienteActionPerformed
+    }
 
-    private void txtTeléfonoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeléfonoClienteActionPerformed
+    private void txtMontoMovimientoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTeléfonoClienteActionPerformed
+    }
 
-    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreClienteActionPerformed
+    private void btnAgregarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {
+        Cliente c = new Cliente();
+        c.setNombre(txtNombreCliente.getText());
+        c.setTelefono(txtTeléfonoCliente.getText());
+        c.setDireccion(txtDirecciónCliente.getText());
+        listaClientes.add(c);
+        borrarFormCliente();
+        
+        
+    }
 
-    private void bcnAgregarTipoCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcnAgregarTipoCuentaActionPerformed
+    private void cboCuentaClienteActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_bcnAgregarTipoCuentaActionPerformed
-
-    private void txtMontoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoInicialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMontoInicialActionPerformed
-
-    private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarCuentaActionPerformed
-
-    private void txtMontoMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoMovimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMontoMovimientoActionPerformed
-
-    private void btnAgregarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMovimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarMovimientoActionPerformed
-
-    private void cboCuentaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCuentaClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCuentaClienteActionPerformed
+    }
 
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Banco().setVisible(true);
@@ -400,7 +445,7 @@ public class Banco extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private javax.swing.JButton bcnAgregarTipoCuenta;
     private javax.swing.JButton btnAgregarCliente;
     private javax.swing.JButton btnAgregarCuenta;
@@ -445,5 +490,5 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JTextField txtMontoMovimiento;
     private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtTeléfonoCliente;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

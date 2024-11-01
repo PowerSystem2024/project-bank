@@ -35,18 +35,18 @@ public class Cliente {
     public String getDireccion() {
         return direccion;
     }
+    
+public void setNombre(String nombre) {
+    this.nombre = nombre; // Asigna el valor del parámetro al atributo
+}
 
-  
-    void setNombre(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public void setTelefono(String telefono) {
+    this.telefono = telefono; // Asigna el valor del parámetro al atributo
+}
 
-    void setTelefono(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public void setDireccion(String direccion) {
+    this.direccion = direccion; // Asigna el valor del parámetro al atributo
+}
 
-    void setDireccion(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }
