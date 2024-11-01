@@ -376,15 +376,16 @@ public class Banco extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void bcnAgregarTipoCuentaActionPerformed(java.awt.event.ActionEvent evt) {
-        String tipoCuenta = JOptionPane.showInputDialog(this, "TIPO CUENTA");
+    private void bcnAgregarTipoCuentaActionPerformed(java.awt.event.ActionEvent evt) {////Este es el encabezado del método que se ejecuta cuando se produce un evento                                                
+        cliente = listaClientes.get(cboCuentaCliente.getSelectedIndex());
+        String tipoCuenta = JOptionPane.showInputDialog(this, "TIPO CUENTA"); //El valor ingresado se almacena en la variable tipoCuenta.
         listaTipoCuenta.add(tipoCuenta);
         llenarCombosTipoCuenta();
 
     }
 
     public void llenarCombosTipoCuenta() {
-        Object tipos[] = new Object[listaTipoCuenta.size()];
+        Object tipos[] = new Object[listaTipoCuenta.size()];//Se crea un arreglo de objetos llamado tipos que se utilizará para almacenar los tipos de cuenta a rellenar en el combo box.
         int i = 0;
         for (String tipo : listaTipoCuenta) {
             tipos[i] = tipo;
@@ -399,8 +400,7 @@ public class Banco extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        cliente = listaClientes.get(cboCuentaCliente.getSelectedIndex());
+    private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {  
         Cuenta cuenta = new Cuenta();
         cuenta.setTipoCuenta(listaTipoCuenta.get(cbpTipoCuenta.getSelectedIndex()));
         cuenta.setMontoinicial(Double.parseDouble(txtMontoInicial.getText()));
