@@ -391,7 +391,7 @@ public class Banco extends javax.swing.JFrame {
             i++;
         }
         cbpTipoCuenta.setModel(new DefaultComboBoxModel(tipos));
-        cboConsultaTipoCuenta.setModel(new DefaultComboBoxModel(tipos));
+        
 
     }
 
@@ -414,9 +414,32 @@ public class Banco extends javax.swing.JFrame {
         m.setMonto(Double.parseDouble(txtMontoInicial.getText()));
         cuenta.addMovimiento(m);
         borrarFormCuenta();
-    
+        refrescarComboCuentas();
+        verMovimientos();
     }
-
+    
+    private void cboConsultaClienteActionPerformed(java.awt.event.ActionEvent evt){
+        refrescarComboCuentas();
+        verMovimientos();
+        verDatos();
+    }
+    
+    public void verDatos(){ 
+        
+    }
+    
+    public void verMovimientos(){//Rellena la tabla
+        
+    }
+    public void refrescarComboCuentas(){
+        cliente = listaClientes.get(cboConsultaCliente.getSelectedIndex());
+        int  i=0;
+        ArrayList<String> cuentas = new ArrayList<String>();
+        for(Cuenta c : cliente.getMiscuentas()){
+            cuentas.add(c.getTipoCuenta());
+        }
+        cboConsultaTipoCuenta.setModel(new DefaultComboBoxModel(cuentas.toArray()));
+    }
     private void txtMontoMovimientoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
