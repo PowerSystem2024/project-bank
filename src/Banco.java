@@ -18,8 +18,13 @@ public class Banco extends javax.swing.JFrame {
         initComponents();
         this.setTitle("BANCO");
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo.png"));
-        lblLogo.setIcon(
-                new ImageIcon(img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH)));
+        lblLogo.setIcon(new ImageIcon(img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH)));
+        this.setLocationRelativeTo(null);
+        modelMovs.addColumn("CUENTA");
+        modelMovs.addColumn("FECHA");
+        modelMovs.addColumn("TIPO");
+        modelMovs.addColumn("MONTO");
+        tblMovimientos.setModel(modelMovs);
 
     }
 
@@ -429,6 +434,24 @@ public class Banco extends javax.swing.JFrame {
     }
     
     public void verMovimientos(){//Rellena la tabla
+        cliente = listaClientes.get(cboConsultaCliente.getSelectedIndex());
+        cuenta=cliente.getMiscuentas().get(cboConsultaTipoCuenta.getSelectedIndex());
+        double saldo=0;
+        while(modelMovs.getRowCount()>0){
+            modelMovs.removeRow(0);
+        }
+        for (Movimiento m : cuenta.getMismovimientos()) {
+            Object mov[]=new Object[4];
+            mov[0]= cuenta.getTipoCuenta();
+            mov[1]=m.getFechaMovimiento();
+            mov[2]=m.getTipoMovimiento();
+            mov[3]=aMoneda(m.getMonto());
+            saldo+=m.getMonto();
+            modelMovs.addRow(mov);
+            
+        }
+        tblMovimientos.setModel(modelMovs);
+        lblSaldo.setText(aMoneda(saldo)); 
         
     }
     public void refrescarComboCuentas(){
