@@ -3,6 +3,8 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -429,6 +431,11 @@ public class Banco extends javax.swing.JFrame {
         verDatos();
     }
     
+    private void cboConsultaTipoCuentaActionPerformed(java.awt.event.ActionEvent evt){
+        verDatos();
+        verMovimientos();
+    }
+    
     public void verDatos(){ 
         
     }
@@ -468,14 +475,16 @@ public class Banco extends javax.swing.JFrame {
     }
 
     private void btnAgregarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {
-        Cliente c = new Cliente();
-        c.setNombre(txtNombreCliente.getText());
-        c.setTelefono(txtTeléfonoCliente.getText());
-        c.setDireccion(txtDirecciónCliente.getText());
-        listaClientes.add(c);
-        borrarFormCliente();
-        
-        
+        cliente = listaClientes.get(cboConsultaCliente.getSelectedIndex());
+        cuenta = cliente.getMiscuentas().get(cboConsultaTipoCuenta.getSelectedIndex());
+        Movimiento m = new Movimiento();
+        m.setFechaMovimiento(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        m.setTipoMovimiento(cboTipoMovimiento.getSelectedItem().toString());
+        double monto=Double.parseDouble(txtMontoMovimiento.getText().toString());
+        monto=m.getTipoMovimiento().endsWith("DEPOSITO")?monto:(monto*-1);
+        m.setMonto(monto);
+        cuenta.addMovimiento(m);
+        verMovimientos();
     }
 
     private void cboCuentaClienteActionPerformed(java.awt.event.ActionEvent evt) {
