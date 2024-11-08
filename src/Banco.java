@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class Banco extends javax.swing.JFrame {
     ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
     ArrayList<String> listaTipoCuenta = new ArrayList<String>();
+    private JLabel lblSaldo;
 
     Cliente cliente;
     Cuenta cuenta;
@@ -448,8 +450,8 @@ public class Banco extends javax.swing.JFrame {
     public void verDatos(){ 
          cliente = listaClientes.get(cboConsultaCliente.getSelectedIndex());
         lblCliente.setText(cliente.getNombre());
-        lblTelefonoCliente.setText(cliente.getTelefono());
-        lblDireccionCliente.setText(cliente.getDireccion());
+        lblTeléfonoCliente.setText(cliente.getTelefono());
+        lblDirecciónCliente.setText(cliente.getDireccion());
                         
         //si tiene cuenta vamos a mostrar sus cuentas        
         if(cliente.getMiscuentas().size()>0){
