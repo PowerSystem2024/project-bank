@@ -1,5 +1,6 @@
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Banco extends javax.swing.JFrame {
@@ -15,6 +17,8 @@ public class Banco extends javax.swing.JFrame {
     ArrayList<String> listaTipoCuenta = new ArrayList<String>();
 
     Cliente cliente;
+    Cuenta cuenta;
+    DefaultTableModel modelMovs = new DefaultTableModel();
 
     public Banco() {
         initComponents();
@@ -435,9 +439,28 @@ public class Banco extends javax.swing.JFrame {
         verDatos();
         verMovimientos();
     }
+    public String aMoneda(double cantidad){
+        cantidad = Math.round(cantidad *100.0) / 100.0; //corro la coma 2 lugares a la derecha, luego redondea y deja la coma en su lugar
+                DecimalFormat formato = new DecimalFormat("$ #,###.## " ); //solo indico el formato como se va a mostrar
+                return formato.format(cantidad); //retorno el objeto redoneado
+    }
     
     public void verDatos(){ 
-        
+         cliente = listaClientes.get(cboConsultaCliente.getSelectedIndex());
+        lblCliente.setText(cliente.getNombre());
+        lblTelefonoCliente.setText(cliente.getTelefono());
+        lblDireccionCliente.setText(cliente.getDireccion());
+                        
+        //si tiene cuenta vamos a mostrar sus cuentas        
+        if(cliente.getMiscuentas().size()>0){
+            cuenta = cliente.getMiscuentas().get(cboConsultaTipoCuenta.getSelectedIndex());
+            lblTipoCuenta.setText(cuenta.getTipoCuenta());
+            lblMontoInicial.setText(aMoneda(cuenta.getMontoinicial()));
+            
+        }else{
+            lblTipoCuenta.setText("No posee Cuenta");
+            lblMontoInicial.setText("No posee Cuenta");
+        }
     }
     
     public void verMovimientos(){//Rellena la tabla
