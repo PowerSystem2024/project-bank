@@ -1,10 +1,6 @@
 package bancouniversidad;
 import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatArcDarkIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOceanIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.text.DecimalFormat;
