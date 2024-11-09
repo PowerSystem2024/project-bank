@@ -1,11 +1,19 @@
+package bancouniversidad;
+import java.util.Date;
 
 
 public class Movimiento {
     String tipoMovimiento;
     String fechaMovimiento;
-    double monto;
+    double  monto;
 
     public Movimiento() {
+    }
+
+    public Movimiento(String tipoMovimiento, String fechaMovimiento, double monto) {
+        this.tipoMovimiento = tipoMovimiento;
+        this.fechaMovimiento = fechaMovimiento;
+        this.monto = monto;
     }
 
     public String getTipoMovimiento() {
@@ -31,6 +39,5 @@ public class Movimiento {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-    
     
 }
